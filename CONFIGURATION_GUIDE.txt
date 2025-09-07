@@ -1,0 +1,168 @@
+AWS SSL AUTOMATION PROJECT - CONFIGURATION GUIDE
+=================================================
+
+This file contains all the variables that need to be modified before deploying 
+the project to your own AWS environment. Replace placeholder values with your 
+actual configuration.
+
+IMPORTANT: All sensitive data has been replaced with placeholders for security.
+
+=================================================
+REQUIRED CONFIGURATIONS
+=================================================
+
+1. FILE: config/ssl_settings.py
+   LINE: 7
+   VARIABLE: SSL_INSTANCE_ID
+   CURRENT: 'i-xxxxxxxxxxxxxxxxx'
+   CHANGE TO: Your actual EC2 instance ID for SSL renewal
+
+   LINE: 14
+   VARIABLE: SSL_SNS_TOPIC_ARN
+   CURRENT: 'arn:aws:sns:region:account:topic-name'
+   CHANGE TO: Your actual SNS topic ARN for notifications
+
+   LINE: 18
+   VARIABLE: domain
+   CURRENT: 'example.com'
+   CHANGE TO: Your actual domain name
+
+   LINE: 19
+   VARIABLE: acm_arn
+   CURRENT: 'arn:aws:acm:region:account:certificate/certificate-id'
+   CHANGE TO: Your actual ACM certificate ARN
+
+2. FILE: cv.html
+   LINE: 5
+   VARIABLE: <title>
+   CURRENT: 'Your Name - Network Security Engineer'
+   CHANGE TO: Your actual name and title
+
+   LINE: 66
+   VARIABLE: profile-name
+   CURRENT: 'Your Name'
+   CHANGE TO: Your actual name
+
+   LINE: 67
+   VARIABLE: profile-title
+   CURRENT: Update as needed
+   CHANGE TO: Your actual job title
+
+   LINE: 78-85
+   VARIABLE: Contact information section
+   CURRENT: Placeholder contact details
+   CHANGE TO: Your actual contact information
+
+3. FILE: js/main.js
+   LINE: 4
+   VARIABLE: email
+   CURRENT: 'your.name' + '@' + 'example.com'
+   CHANGE TO: Your actual email address
+
+4. FILE: js/visitorcounter.js
+   LINE: 3
+   VARIABLE: apiUrl
+   CURRENT: 'https://your-api-id.execute-api.region.amazonaws.com/PROD/counter'
+   CHANGE TO: Your actual API Gateway URL
+
+5. FILE: ec2-scripts/renew-certificates.sh
+   LINE: 12
+   VARIABLE: DOMAIN
+   CURRENT: 'example.com'
+   CHANGE TO: Your actual domain name
+
+   LINE: 13
+   VARIABLE: EMAIL
+   CURRENT: 'admin@example.com'
+   CHANGE TO: Your actual email address
+
+   LINE: 14
+   VARIABLE: SNS_TOPIC_ARN
+   CURRENT: 'arn:aws:sns:region:account:topic-name'
+   CHANGE TO: Your actual SNS topic ARN
+
+   LINE: 15
+   VARIABLE: TARGET_CERT_ARN
+   CURRENT: 'arn:aws:acm:region:account:certificate/certificate-id'
+   CHANGE TO: Your actual ACM certificate ARN
+
+6. FILE: template.yaml (SAM Template)
+   LINE: 16
+   VARIABLE: DomainName Default
+   CURRENT: 'example.com'
+   CHANGE TO: Your actual domain name
+
+   LINE: 20
+   VARIABLE: NotificationEmail Default
+   CURRENT: 'admin@example.com'
+   CHANGE TO: Your actual email address
+
+   LINE: 52
+   VARIABLE: SSL_INSTANCE_ID
+   CURRENT: 'PLACEHOLDER_INSTANCE_ID'
+   CHANGE TO: Your actual EC2 instance ID
+
+   LINE: 217
+   VARIABLE: CloudflareTokenParameter Value
+   CURRENT: 'PLACEHOLDER_CLOUDFLARE_TOKEN'
+   CHANGE TO: Your actual Cloudflare API token
+
+7. FILE: samconfig.toml
+   LINE: 6
+   VARIABLE: s3_bucket
+   CURRENT: 'your-sam-artifacts-bucket'
+   CHANGE TO: Your actual S3 bucket for SAM artifacts
+
+   LINE: 10
+   VARIABLE: DomainName parameter
+   CURRENT: 'example.com'
+   CHANGE TO: Your actual domain name
+
+   LINE: 10
+   VARIABLE: NotificationEmail parameter
+   CURRENT: 'admin@example.com'
+   CHANGE TO: Your actual email address
+
+=================================================
+AWS ENVIRONMENT SETUP REQUIRED
+=================================================
+
+Before deploying, ensure you have:
+
+1. AWS CLI configured with appropriate permissions
+2. SAM CLI installed
+3. An S3 bucket for SAM deployment artifacts
+4. A Cloudflare account with API token
+5. A domain name configured in Cloudflare
+6. EC2 instance prepared with SSL renewal scripts
+
+=================================================
+DEPLOYMENT STEPS
+=================================================
+
+1. Update all configuration variables listed above
+2. Run: sam build
+3. Run: sam deploy --guided
+4. Configure EC2 instance with SSL renewal scripts
+5. Set up Cloudflare API token in AWS Systems Manager
+6. Test SSL renewal manually before scheduling
+
+=================================================
+SECURITY NOTES
+=================================================
+
+- Never commit real API tokens or credentials to version control
+- Use AWS Systems Manager Parameter Store for sensitive values
+- Review IAM permissions to follow least-privilege principle
+- Enable CloudTrail logging for audit purposes
+- Regularly rotate API tokens and access keys
+
+=================================================
+SUPPORT
+=================================================
+
+For questions about this configuration:
+- Review the main documentation in README.md
+- Check AWS CloudWatch logs for deployment issues
+- Verify IAM permissions if access errors occur
+- Test individual components before full deployment

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Your Name - TITLE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            min-height: calc(100vh - 40px);
+        }
+
+        .left-column {
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px 30px;
+            position: relative;
+        }
+
+        .left-column::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0.8;
+        }
+
+        .profile-section {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .profile-title {
+            font-size: 16px;
+            color: #ecf0f1;
+            font-weight: 400;
+        }
+
+        .visitor-counter {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 15px;
+            border-radius: 25px;
+            margin: 20px 0;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ecf0f1;
+        }
+
+        .section-title i {
+            color: #667eea;
+            width: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .contact-info i {
+            width: 16px;
+            color: #667eea;
+        }
+
+        .contact-info a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #667eea;
+        }
+
+        #emailPlaceholder {
+            cursor: pointer;
+            color: #667eea;
+            transition: color 0.3s ease;
+        }
+
+        #emailPlaceholder:hover {
+            color: #ecf0f1;
+        }
+
+        .skills-container {
+            space-y: 20px;
+        }
+
+        .skill-category {
+            margin-bottom: 25px;
+        }
+
+        .skill-category h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #667eea;
+        }
+
+        .skills-list {
+            list-style: none;
+        }
+
+        .skills-list li {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 12px;
+            margin-bottom: 6px;
+            border-radius: 8px;
+            font-size: 13px;
+            backdrop-filter: blur(5px);
+            transition: background 0.3s ease;
+        }
+
+        .skills-list li:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .languages-list {
+            list-style: none;
+        }
+
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .language-name {
+            font-weight: 500;
+        }
+
+        .language-level {
+            background: #667eea;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .right-column {
+            padding: 40px;
+            background: #ffffff;
+        }
+
+        .professional-summary {
+            margin-bottom: 40px;
+        }
+
+        .professional-summary .section-title {
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .professional-summary p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+            text-align: justify;
+        }
+
+        .right-column .section-title {
+            color: #2c3e50;
+            font-size: 22px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .item-title {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 16px;
+        }
+
+        .item-date {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .item-subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .item-content {
+            margin-top: 10px;
+        }
+
+        .item-description {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: 8px;
+        }
+
+        .project-links {
+            margin-top: 12px;
+        }
+
+        .project-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 13px;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .project-links a:hover {
+            color: #764ba2;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                margin: 10px;
+            }
+            
+            .left-column {
+                padding: 30px 20px;
+            }
+            
+            .right-column {
+                padding: 30px 20px;
+            }
+            
+            .profile-name {
+                font-size: 20px;
+            }
+            
+            .professional-summary .section-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="left-column">
+            <div class="profile-section">
+                <div class="profile-image">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h1 class="profile-name">Your Name</h1>
+                <p class="profile-title">Network Security Engineer</p>
+                <div class="visitor-counter">
+                    <p><i class="fas fa-eye"></i> Visitors: <span id="counter">0</span></p>
+                </div>
+            </div>
+            
+            <section class="section contact-section">
+                <h2 class="section-title">
+                    <i class="fas fa-id-card"></i> Contact Information
+                </h2>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> Bursa, TURKEY</p>
+                    <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/905368330460" target="_blank">+90 536 833 0460</a></p>
+                    <p><i class="fab fa-github"></i> <a href="https://github.com/ismailTrk/" target="_blank">github.com/ismailTrk</a></p>
+                    <p><i class="fas fa-envelope"></i> <span id="emailPlaceholder">[Click to reveal email]</span></p>
+                    <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/ismail-turkyilmazoglu/" target="_blank">linkedin.com/in/ismail-turkyilmazoglu</a></p>
+                </div>
+            </section>
+            
+            <section class="section skills-section">
+                <h2 class="section-title">
+                    <i class="fas fa-code"></i> Technical Skills
+                </h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h4>Network Security</h4>
+                        <ul class="skills-list">
+                            <li>Cisco ISE 3.1</li>
+                            <li>Cisco WLC 9800</li>
+                            <li>Palo Alto Firewalls</li>
+                            <li>FortiGate Firewalls</li>
+                            <li>Check Point Firewalls</li>
+                            <li>Sophos Firewalls</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Network Infrastructure</h4>
+                        <ul class="skills-list">
+                            <li>Cisco Nexus 9K (N9K)</li>
+                            <li>Cisco Catalyst 9K (C9K)</li>
+                            <li>Arista Switches</li>
+                            <li>Huawei Switches</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Automation & Scripting</h4>
+                        <ul class="skills-list">
+                            <li>Bash Scripting</li>
+                            <li>PowerShell</li>
+                            <li>Python</li>
+                            <li>Network Automation</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section languages-section">
+                <h2 class="section-title">
+                    <i class="fas fa-language"></i> Languages
+                </h2>
+                <ul class="languages-list">
+                    <li class="language-item">
+                        <span class="language-name">Turkish</span>
+                        <span class="language-level">Native</span>
+                    </li>
+                    <li class="language-item">
+                        <span class="language-name">English</span>
+                        <span class="language-level">Advanced</span>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+        
+        <main class="right-column">
+            <section class="professional-summary">
+                <h2 class="section-title">
+                    <i class="fas fa-user-tie"></i> Professional Summary
+                </h2>
+                <p>
+                    Experienced Network Security Engineer with expertise in enterprise-level network infrastructure and security solutions. 
+                    Holds multiple industry certifications including CCNA, CCNP Security, and PCNSE. Proven track record in critical 
+                    infrastructure projects including nuclear power facilities and automotive industry implementations. Skilled in 
+                    firewall management, network automation, and security policy implementation across diverse vendor platforms.
+                </p>
+            </section>
+
+            <section class="section experience-section">
+                <h2 class="section-title">
+                    <i class="fas fa-briefcase"></i> Professional Experience
+                </h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="item-header">
+                            <span class="item-title">Network Security Engineer</span>
+                            <span class="item-date">2024 - Present</span>
+                        </div>
+                        <div class="item-subtitle">ICT BULUTISTAN</div>
+                        <div class="item-description">
+                            Leading network security implementations and managing enterprise firewall solutions. 
+                            Responsible for security policy configuration, network monitoring, and incident response.
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="item-header">
+                            <span class="item-title">Network Engineer</span>
+                            <span class="item-date">2023 - 2024</span>
+                        </div>
+                        <div class="item-subtitle">TOGG (via T-Systems)</div>
+                        <div class="item-description">
+                            Contributed to Turkey's national car project network infrastructure. Implemented scalable 
+                            network solutions and security frameworks for automotive manufacturing operations.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="item-header">
+                            <span class="item-title">Network Security Specialist</span>
+                            <span class="item-date">2022 - 2023</span>
+                        </div>
+                        <div class="item-subtitle">Akkuyu Nuclear Power Plant</div>
+                        <div class="item-description">
+                            Managed critical infrastructure network security for Turkey's first nuclear power plant. 
+                            Implemented high-availability security solutions and compliance frameworks.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section projects-section">
+                <h2 class="section-title">
+                    <i class="fas fa-project-diagram"></i> Key Projects
+                </h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="item-header">
+                            <span class="item-title">Enterprise Security Architecture</span>
+                            <span class="item-date">2024</span>
+                        </div>
+                        <div class="item-description">
+                            Designed and implemented comprehensive security architecture using Palo Alto and FortiGate 
+                            firewalls, including network segmentation and threat prevention policies.
+                        </div>
+                        <div class="project-links">
+                            <a href="#"><i class="fab fa-github"></i> View Details</a>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="item-header">
+                            <span class="item-title">Network Automation Framework</span>
+                            <span class="item-date">2023</span>
+                        </div>
+                        <div class="item-description">
+                            Developed Python-based automation scripts for network configuration management and 
+                            monitoring across Cisco and Arista platforms.
+                        </div>
+                        <div class="project-links">
+                            <a href="#"><i class="fab fa-github"></i> Source Code</a>
+                            <a href="#"><i class="fas fa-external-link-alt"></i> Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section certifications-section">
+                <h2 class="section-title">
+                    <i class="fas fa-certificate"></i> Certifications
+                </h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="item-header">
+                            <span class="item-title">PCNSE (Palo Alto Networks Certified Network Security Engineer)</span>
+                            <span class="item-date">2023</span>
+                        </div>
+                        <div class="item-description">Advanced certification in Palo Alto Networks security platform management and configuration.</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="item-header">
+                            <span class="item-title">CCNP Security (350-701)</span>
+                            <span class="item-date">2023</span>
+                        </div>
+                        <div class="item-description">Professional-level certification covering advanced security technologies and VPN solutions.</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="item-header">
+                            <span class="item-title">CCNA (Cisco Certified Network Associate)</span>
+                            <span class="item-date">2021</span>
+                        </div>
+                        <div class="item-description">Foundation certification in network fundamentals, network access, and security fundamentals.</div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section education-section">
+                <h2 class="section-title">
+                    <i class="fas fa-graduation-cap"></i> Education
+                </h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="item-header">
+                            <span class="item-title">B.Sc. in Computer Engineering</span>
+                            <span class="item-date">2019</span>
+                        </div>
+                        <div class="item-subtitle">Harran University</div>
+                        <div class="item-description">
+                            Comprehensive program covering software engineering, network systems, and computer architecture.
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section training-section">
+                <h2 class="section-title">
+                    <i class="fas fa-laptop-code"></i> Professional Training
+                </h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="item-header">
+                            <span class="item-title">Exclusive Networks - Citrix Load Balancer</span>
+                            <span class="item-date">2023</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="item-header">
+                            <span class="item-title">Cyberwise - Check Point NGFW</span>
+                            <span class="item-date">2023</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="item-header">
+                            <span class="item-title">Knowledge Club - DevNet</span>
+                            <span class="item-date">2023</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="item-header">
+                            <span class="item-title">Turkish Network Administrators Association</span>
+                            <span class="item-date">2023</span>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-description">
+                                Comprehensive training program covering R&S ENARSI, CCNP R&S CORE, CyberOPS, 
+                                CCNA, Cyber Security, and Wireless Technologies.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/visitorcounter.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

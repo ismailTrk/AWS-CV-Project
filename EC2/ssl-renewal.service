@@ -1,0 +1,16 @@
+#sudo nano /etc/systemd/system/ssl-renewal.service
+[Unit]
+Description=SSL Certificate Renewal Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/cert-renewal/renew-certificates.sh
+User=root
+StandardOutput=journal
+StandardError=journal
+TimeoutStartSec=1800
+
+[Install]
+WantedBy=multi-user.target
