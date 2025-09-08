@@ -18,7 +18,7 @@ source /opt/certbot-venv/bin/activate
 
 # Define configuration variables
 LOG_FILE="/var/log/cert-renewal.log"
-DOMAIN="testverse.net"
+DOMAIN="example.com"
 EMAIL="admin@example.com"
 SNS_TOPIC_ARN="arn:aws:sns:us-east-1:211125362854:AWS-CV-Alarm"
 TARGET_CERT_ARN="arn:aws:acm:us-east-1:211125362854:certificate/0c5c3a57-2a48-49db-9738-89ba44a2ecdd"
@@ -114,7 +114,7 @@ sudo chown ec2-user:ec2-user /tmp/*.pem
 # =============================================================================
 # We reimport to the specific ARN that's currently in use (0c5c3a57-2a48...)
 # This preserves all CloudFront and other service associations
-# The certificate contains both testverse.net and *.testverse.net domains
+# The certificate contains both example.com and *.example.com domains
 echo "$(date) - Reimporting certificate to AWS ACM ARN: $TARGET_CERT_ARN" >> $LOG_FILE
 
 aws acm import-certificate \

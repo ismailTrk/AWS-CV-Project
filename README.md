@@ -889,7 +889,7 @@ The experience reinforces that cloud architecture success comes not just from te
 ---
 
 **Project Repository**: [github.com/ismailTrk/ismail-cv-sam](https://github.com/ismailTrk/ismail-cv-sam)  
-**Live Demo**: [testverse.net](https://testverse.net)  
+**Live Demo**: [example.com](https://example.com)  
 **Architecture Cost**: $0.05/month (99% savings vs manual process)  
 **Automation Frequency**: Every 20 days, fully automated  
 **Reliability**: 99.9% uptime target with automated recovery
